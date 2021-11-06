@@ -53,10 +53,10 @@ namespace AircompanyTests.Tests
         public void Airport_SortByMaxLoadCapacity_ReturnListWithPassengersSortedByMaxLoadCapacity()
         {
             var airport = new Airport(planes);
+
             var planesSortedByMaxLoadCapacity = airport.SortByMaxLoadCapacity().Planes;
 
             var expectedSortedList = airport.Planes.OrderBy(x => x.MaxLoadCapacity).ToList();
-
 
             Assert.Equals(expectedSortedList, planesSortedByMaxLoadCapacity);
         }

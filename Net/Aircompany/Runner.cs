@@ -7,7 +7,7 @@ namespace Aircompany
 {
     public class Runner
     {
-        public static List<Plane> planes = new List<Plane>()
+        public static List<Plane> planes = new()
         {
             new PassengerPlane("Boeing-737", 900, 12000, 60500, 164),
             new PassengerPlane("Boeing-737-800", 940, 12300, 63870, 192),

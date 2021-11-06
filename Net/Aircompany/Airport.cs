@@ -3,7 +3,6 @@ using System.Linq;
 using Aircompany.Models;
 using Aircompany.Planes;
 
-
 namespace Aircompany
 {
     public class Airport

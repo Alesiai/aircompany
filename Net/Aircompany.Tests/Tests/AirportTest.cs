@@ -1,15 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using NUnit.Framework;
 using Aircompany;
 using Aircompany.Models;
 using Aircompany.Planes;
+using Xunit;
 
 namespace AircompanyTests.Tests
 {
     public class AirportTest
     {
-        private readonly List<Plane> planes = new List<Plane>()
+        private readonly List<Plane> planes = new()
         {
             new PassengerPlane("Boeing-737", 900, 12000, 60500, 164),
             new PassengerPlane("Boeing-737-800", 940, 12300, 63870, 192),
@@ -28,9 +28,9 @@ namespace AircompanyTests.Tests
         };
 
         private readonly PassengerPlane planeWithMaxPassengersCapacity =
-            new PassengerPlane("Boeing-747", 980, 16100, 70500, 242);
+            new("Boeing-747", 980, 16100, 70500, 242);
 
-        [Test]
+        [Fact]
         public void Airport_HasMilitaryTypeTransport_ReturnTrue()
         {
             var airport = new Airport(planes);
@@ -39,26 +39,26 @@ namespace AircompanyTests.Tests
             Assert.True(transportMilitaryPlanes.Where(x => x.PlaneType == MilitaryType.Transport).Any());
         }
 
-        [Test]
+        [Fact]
         public void Airport_FindPlaneWithMaxPassengersCapacity_ReturnPlaneWithMaxPassengersCapacity()
         {
             var airport = new Airport(planes);
             var expectedPlaneWithMaxPassengersCapacity = airport.GetPassengerPlaneWithMaxPassengersCapacity();
 
-            Assert.Equals(planeWithMaxPassengersCapacity.PassengersCapacity,
+            Assert.Equal(planeWithMaxPassengersCapacity.PassengersCapacity,
                 expectedPlaneWithMaxPassengersCapacity.PassengersCapacity);
         }
 
-        [Test]
+        [Fact]
         public void Airport_SortByMaxLoadCapacity_ReturnListWithPassengersSortedByMaxLoadCapacity()
         {
             var airport = new Airport(planes);
-
             var planesSortedByMaxLoadCapacity = airport.SortByMaxLoadCapacity().Planes;
 
             var expectedSortedList = airport.Planes.OrderBy(x => x.MaxLoadCapacity).ToList();
+            
 
-            Assert.Equals(expectedSortedList, planesSortedByMaxLoadCapacity);
+            Assert.Equal(expectedSortedList, planesSortedByMaxLoadCapacity);
         }
     }
 }
